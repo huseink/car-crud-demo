@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.login.user;
+package com.user;
 
 import java.util.Properties;
 import javax.faces.bean.ManagedBean;
