@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <ui:composition template="../templates/template.xhtml">
+        <ui:define name="head">
+            <style>
+                .divider{
+                    border-bottom:1px solid #a9a9a9;
+                }
+
+                .shadow{
+                    -webkit-box-shadow: 5px 14px 42px -10px rgba(0,0,0,0.35);
+                    -moz-box-shadow: 5px 14px 42px -10px rgba(0,0,0,0.35);
+                    box-shadow: 5px 14px 42px -10px rgba(0,0,0,0.35);
+                }
+
+
+            </style>
+        </ui:define>
+        <ui:define name='navItem'>
+            <b:button value="Say Hello!" look="info" href='#sayHello' class='vertical-center' />
+        </ui:define>
+        <ui:define name="content">
+            <b:jumbotron>
+                <b:container>
+                    <h1 style='margin-top: 0px;'>Cars Showcase</h1>
+                    <br></br>
+                    <b:panelGrid columns='2'>
+                        <b:form>
+                            <b:carousel id="parque" style="width:500px;" start-animation="true"  class='shadow'>
+                                <b:carouselItem>
+                                    <img src="images/gtr.jpg" alt="Valladolid" style="width: 800px; height: 400px"/>
+                                </b:carouselItem>
+                                <b:carouselItem>
+                                    <img src="images/bmw.png" alt="Valladolid" style="width: 800px; height: 400px"/>
+                                </b:carouselItem>
+                                <b:carouselItem>
+                                    <img src="images/mustang.jpg" alt="Valladolid" style="width: 800px; height: 400px" />
+                                </b:carouselItem>
+                            </b:carousel>
+                        </b:form>
+                        <p>Definitions of sports cars often relate to how the car design is optimised for dynamic performance (car handling), without any specific minimum requirements; both a Triumph Spitfire and Ferrari 488 Pista can be considered sports cars, despite vastly different levels of performance.Broader definitions of sports cars include cars "in which performance takes precedence over carrying capacity", or that emphasise the "thrill of driving" or are "marketed "using the excitement of speed and the glamour of the (race)track" </p>
+                    </b:panelGrid>
+                </b:container>
+            </b:jumbotron>
+
+            <b:container style='margin-top: 0px;'>
+                <b:panelGrid columns="3" >
+                    <b:jumbotron style='background-color: white;'>
+                        <h2 class='divider'> Nissan GTR </h2>
+                        <br></br>
+                        <p>The Nissan GT-R is powered by the VR38DETT V6 engine, a 3,799 cc (3.8 L; 231.8 cu in) DOHC V6 with plasma transferred wire arc sprayed cylinder bores.</p>
+                    </b:jumbotron >
+                    <b:jumbotron style='background-color: white;'> 
+                        <h2 class="divider">Ford Mustang </h2>
+                        <br></br>
+                        <p>The Ford Mustang has 1 Petrol Engine on offer. The Petrol engine is 4951 cc. It is available with the Automatic transmission. </p>
+                    </b:jumbotron>
+                    <b:jumbotron style='background-color: white;'>
+                        <h2 class="divider"> BMW M4 </h2>
+                        <br></br>
+                        <p> The 3-litre, twin-turbocharged straight-six develops 425bhp, but the real drama comes from the new engine’s torque, which peaks at 406lb ft from just 1850rpm.</p>
+                    </b:jumbotron>
+
+                </b:panelGrid>
+            </b:container>
+
+
+            <h:form id="sayHello">
+                <b:container fluid="false" style='margin-top:50px;'>
+                    <b:panel title="Say Hello!" icon="mail" look="info" collapsible="false">
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Name:" for="name" />
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText requiredMessage="Field cannot be empty" placeholder="" id="name" value="#{mail.name}"
+                                             ajax="false" required="true" >
+
+                                </b:inputText>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="name" />
+                            </b:column>
+                        </b:row>
+                        <b:row tooltip="This password has fancy error messages.">
+                            <b:column medium-screen="2">
+                                <h:outputText value="Email:" />
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText requiredMessage="Field cannot be empty" placeholder="" id="email" value="#{mail.email}" required="true"
+                                             autocomplete="false">
+
+                                </b:inputText>
+
+                            </b:column>
+
+                            <b:column medium-screen="6" styleClass="message">
+                                <b:message for="email"/>
+                            </b:column>
+                        </b:row>  
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Message: " for="message" />
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputTextarea requiredMessage="Field cannot be empty" placeholder="Write something" id="message" value="#{mail.message}"
+                                                 ajax="false" required="true" >
+
+                                </b:inputTextarea>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="message" />
+                            </b:column>
+                        </b:row>
+
+
+                        <b:row>
+                            <b:column span="2" offset="2">
+                                <b:commandButton value="Submit" action="#{mail.sendMail}" look="success"
+                                                 style="width:100%" />
+                            </b:column>
+
+                        </b:row>
+
+                    </b:panel>
+                </b:container>
+            </h:form>
+
+
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sign In</title>
+    </h:head>
+    <h:body>
+        <h:form id="loginForm">
+            <b:container fluid="false">
+                <b:panel title="Sign In Screen" look="primary" collapsible="false">
+                    <b:row>
+                        <b:column medium-screen="2">
+                            <h:outputLabel value="Username:" for="username" />
+                        </b:column>
+                        <b:column medium-screen="4">
+                            <b:inputText required-message="Field cannot be empty" placeholder="Username" id="username" value="#{userBean.username}"
+                                         ajax="false" required="true" >
+                                <f:facet name="prepend">
+                                    <b:icon name="user" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        <b:column medium-screen="4" style-class="message">
+                            <b:message for="username" />
+                        </b:column>
+                    </b:row>
+                    <b:row tooltip="This password has fancy error messages.">
+                        <b:column medium-screen="2">
+                            <h:outputText value="Password:" />
+                        </b:column>
+                        <b:column medium-screen="4">
+                            <b:inputSecret required-message="Field cannot be empty" placeholder="Password" id="password" value="#{userBean.password}" required="true">
+                                <f:facet name="prepend">
+                                    <b:icon name="lock" />
+                                </f:facet>
+                            </b:inputSecret>
+                        </b:column>
+                        <b:column medium-screen="4" styleClass="message">
+                            <b:message for="password"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column span="2" offset="2">
+                            <b:commandButton value="Sign In" action="#{userBean.validateUsernamePassword()}" look="success"
+                                             style="width:100%" />
+                        </b:column>
+                        <b:column span="2" offset="0">
+                            <b:button value="Sign Up" href="signup.xhtml?faces-redirect=true" look="primary"
+                                             style="width:100%" />
+                        </b:column>
+                        
+                    </b:row>
+                    
+                </b:panel>
+            </b:container>
+        </h:form>
+        
+
+    </h:body>
+</html>
+

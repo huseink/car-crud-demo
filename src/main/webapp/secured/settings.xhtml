@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="../templates/template.xhtml">
+        <ui:define name="content">
+                <h:form id="settingsForm">
+                    <b:container fluid="false" style='margin-top:50px;'>
+                        <b:panel title="Account Settings" icon="edit" look="primary" collapsible="false">
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="New Full Name" for="fullname" />
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText requiredMessage="Field cannot be empty" placeholder="#{userBean.fullname}" id="fullname" value="#{settingsBean.fullname}"
+                                                 ajax="false" required="true" >
+                                        <f:facet name="prepend">
+                                            <b:icon name="console" />
+                                        </f:facet>
+                                    </b:inputText>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="fullname" />
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="New Username:" for="username" />
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText requiredMessage="Field cannot be empty" placeholder="#{userBean.username}" id="username" value="#{settingsBean.username}"
+                                                 ajax="false" required="true" >
+                                        <f:facet name="prepend">
+                                            <b:icon name="user" />
+                                        </f:facet>
+                                    </b:inputText>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="username" />
+                                </b:column>
+                            </b:row>
+                            <b:row tooltip="This password has fancy error messages.">
+                                <b:column medium-screen="2">
+                                    <h:outputText value="New Password:" />
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputSecret requiredMessage="Field cannot be empty" placeholder="Password" id="password" value="#{settingsBean.password}" required="true"
+                                                   autocomplete="false">
+                                        <f:facet name="prepend">
+                                            <b:icon name="lock" />
+                                        </f:facet>
+                                    </b:inputSecret>
+                                    
+                                </b:column>
+                                
+                                <b:column medium-screen="6" styleClass="message">
+                                    <b:message for="password"/>
+                                </b:column>
+                            </b:row>
+                            
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Confirm Password:" />
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputSecret requiredMessage="Field cannot be empty" placeholder="Confirm Password" id="passwordConfirm" value="#{settingsBean.confirmPassword}" required="true"
+                                                   validator="#{settingsBean.validatePasswordCorrect}">
+                                        <f:facet name="prepend">
+                                            <b:icon name="lock" />
+                                        </f:facet>
+                                    </b:inputSecret>
+                                </b:column>
+                                   <b:column medium-screen="6" styleClass="message">
+                                    <b:message for="passwordConfirm"/>
+                                </b:column>
+                                    
+                            </b:row>
+                            <b:row>
+                                <b:column span="2" offset="2">
+                                    <b:commandButton value="Save" action="#{settingsBean.changeUsernamePassword()}" look="success"
+                                                     style="width:100%" />
+                                </b:column>
+                           
+                            </b:row>
+                            
+                        </b:panel>
+                    </b:container>
+                </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      style='scroll-behavior: smooth;'>
+    <style>
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        #scrollUpCustom {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button at the bottom of the page */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #555; /* Set a background color */
+            color: white; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+            text-decoration: none;
+        }
+
+
+    </style>
+    <h:head>
+        <meta http-equiv="refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};url=#{request.contextPath}/login.xhtml"/>
+        <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+        <ui:insert name="head"></ui:insert>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <b:navBar brand="JSF" brandHref="#{request.contextPath}/secured/home.xhtml" 
+                      inverse="true" 
+                      sticky="false"
+                      style="border-radius: 0;margin-bottom: 0px;justify-content: center;">
+                <b:navbarLinks pull="left">
+                    <b:navLink value="Home" icon-awesome="home" href="#{request.contextPath}/secured/home.xhtml"></b:navLink>
+                </b:navbarLinks>
+                <b:navbarLinks pull="left">
+                    <b:navLink value="Cars" icon-awesome="rss-square" href="#{request.contextPath}/secured/cars.xhtml"></b:navLink>
+                </b:navbarLinks>
+                <b:navbarLinks pull="right">
+                    <b:dropMenu  value="#{userBean.fullname} " rendered="#{userBean.fullname != null}">
+                        <b:navCommandLink value="Settings" icon="cog" ajax="false" action="settings?faces-redirect=true"></b:navCommandLink>
+                        <b:navCommandLink value="Logout" icon="log-out" ajax="false" action="#{userBean.doLogout}"></b:navCommandLink>
+                    </b:dropMenu>
+                    <ui:insert name='navItem'></ui:insert>
+                    
+                </b:navbarLinks>
+
+            </b:navBar>
+
+        </h:form>
+
+        <b:scrollUp distance="200" animation="fade" text="Up" name="scrollUpCustom" />     
+
+        <ui:insert name="content">
+
+        </ui:insert>
+        
+
+
+    </h:body>
+</html>
+

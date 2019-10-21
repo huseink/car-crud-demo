@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="../templates/template.xhtml">
+        <ui:define name="content">
+            <b:container style='margin-top: 50px;'>
+
+                <b:dataTable value="#{carBean.cars}" select="true"
+                             var="car"
+                             onselect="console.log(typeOfSelection + ' ' + indexes + ' has been selected');ajax:carPool.onSelect(car, typeOfSelection, indexes);"
+                             ondeselect="console.log(typeOfSelection + ' ' + indexes + ' has been deselected');ajax:carPool.onDeselect(car, typeOfSelection, indexes);"
+                             >
+                    <b:dataTableColumn value="#{car.cid}" style="display:none;" order="desc" label="Id" />
+                    <b:dataTableColumn value="#{car.cname}" label="Car Name"/>
+                    <b:dataTableColumn value="#{car.color}" label="Color"/>
+                    <b:dataTableColumn value="#{car.speed}"  label="Speed"/>
+                    <b:dataTableColumn value="#{car.mfdctry}" label="Manifactured in"/>
+                </b:dataTable>
+
+                <b:row>
+                    <b:column span="1">
+                        <a id="atrigger" class="btn btn-primary" href="#insertModal" data-toggle="modal">Insert Car</a>
+                    </b:column>
+                    <b:column span="1">
+                        <a id="atrigger" class="btn btn-danger" href="#delModal" data-toggle="modal">Delete Car</a>
+                    </b:column>
+
+                </b:row>
+            </b:container>
+
+            <b:modal id="insertModal" title="Car Insert" styleClass="modalPseudoClass">
+                <h:form id="insertForm">
+                    <b:container fluid="false">
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Car Name :" for="carName" />
+                            </b:column>
+                            <b:column medium-screen="3">
+                                <b:inputText requiredMessage="Field cannot be empty" placeholder="Name" id="carName" value="#{carBean.cname}"
+                                             ajax="false" required="true" >
+
+                                </b:inputText>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="carName" />
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Color :" for="carColor" />
+                            </b:column>
+                            <b:column medium-screen="3">
+                                <b:inputText requiredMessage="Field cannot be empty" placeholder="Color" id="carColor" value="#{carBean.color}"
+                                             ajax="false" required="true" >
+
+                                </b:inputText>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="carColor" />
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Car Speed :" for="carSpeed" />
+                            </b:column>
+                            <b:column medium-screen="3">
+                                <b:inputText requiredMessage="Field cannot be empty" placeholder="Speed" id="carSpeed" value="#{carBean.speed}"
+                                             ajax="false" required="true" >
+
+                                </b:inputText>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="carSpeed" />
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Manifacture Country :" for="carMnf" />
+                            </b:column>
+                            <b:column medium-screen="3">
+                                <b:inputText requiredMessage="Field cannot be empty" placeholder="Country" id="carMnf" value="#{carBean.mfdctry}"
+                                             ajax="false" required="true" >
+
+                                </b:inputText>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="carMnf" />
+                            </b:column>
+                        </b:row>
+                        <b:column span="1" offset="3">
+                            <b:commandButton value="Insert" action="#{carBean.insertCar()}" look="success"
+                                             style="width:100%" />
+
+                        </b:column>
+                        <b:column span="1" offset="0">
+                            <b:button value="Close" dismiss="modal" />
+
+                        </b:column>
+
+                    </b:container>
+
+                </h:form>
+
+            </b:modal>
+
+
+            <b:modal id="delModal" title="Heads up!" styleClass="modalPseudoClass" >
+                <b:container>
+                    <p>Are you sure you want to delete the selected car(s)?</p>
+
+                    <h:form>
+                        <b:column span="1" offset="0">
+                            <b:commandButton value="Yes" action="#{carBean.deleteSelectedCars()}" look="danger"
+                                             />
+
+                        </b:column>
+                        <b:column span="1" offset="0">
+                            <b:button value="No" dismiss="modal" />
+
+                        </b:column>
+
+                    </h:form>
+                </b:container>
+
+            </b:modal>
+
+
+
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+
