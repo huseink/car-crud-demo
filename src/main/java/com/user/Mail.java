@@ -51,8 +51,8 @@ public class Mail {
     
 
     public void sendMail() {
-        final String username = "huseinkantarci@gmail.com";
-        final String password = "m1cr0s0ft@12334";
+        final String username = "YOUR EMAIL";
+        final String password = "YOUR PASSWORD";
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -69,9 +69,9 @@ public class Mail {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("alperkantrc@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("SET RECIPIENT"));
             message.setSubject(name + "Contact");
-            message.setText(email + "'den gelen mail şu şekilde: " + Mail.message);
+            message.setText(email + "'from: " + Mail.message);
             Transport.send(message);
 
         } catch (MessagingException ex) {
